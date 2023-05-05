@@ -23,7 +23,7 @@ Trace file format is the PC address of the conditional branch instruction follow
 
 The script `main.py` contains the simulation of the bimodal and gshare branch predictors.
 The script `main_tage.py` contains the simulation of the tage branch predictors.
-In order to inyect errors you should define the variables "activate_error_bit0" and "activate_error_bit1" in the function getPredictionFromCounter().
+In order to inyect errors you should define the variables `activate_error_bit0` and `activate_error_bit1` in the function getPredictionFromCounter().
 
 ### Notices
 
