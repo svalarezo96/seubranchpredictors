@@ -39,6 +39,41 @@ class bb():
             binary_number_out=binary_number
 
         return binary_number_out
+    
+
+    def getPredictionFromCounter3bits(self,pht_file,index_pht,was_taken,prediction,activate_error_bit0, activate_error_bit1):
+        """
+        From the pattern history file checks the counter and define a prediction.
+        """
+        is_wrong=was_taken ^ prediction
+        flag_branch_taken=False
+        with open(pht_file+'.txt','r+') as f:
+            lines = f.readlines()    
+            pht_reg_bin=lines[index_pht].split('\n')[0]
+
+            # pht_reg_bin=self.insertErrorbit(pht_reg_bin,0,activate_error_bit0)
+            # pht_reg_bin=self.insertErrorbit(pht_reg_bin,1,activate_error_bit1)
+
+            pht_reg_int=Conversions.binary_to_decimal(pht_reg_bin)
+
+            flag_st3= pht_reg_int<7 #flag when reg is smaller than 3
+            flag_bt0= pht_reg_int>0 #flag when reg is bigger than 0
+
+            print("inside",pht_reg_int)
+
+            if (is_wrong):
+                if(flag_st3 and was_taken):
+                    pht_reg_int+=1
+                elif (flag_bt0 and not was_taken):
+                    pht_reg_int-=1
+                pht_reg_bin=Conversions.decimal2bin(pht_reg_int)
+                f.seek(0)
+                lines[index_pht]=Conversions.format2bits(pht_reg_bin) +'\n'
+                f.writelines(lines)  
+            flag_branch_taken= bool(int(lines[index_pht][0]))
+
+        return flag_branch_taken
+    
 
     def getPredictionFromCounter(self,pht_file,index_pht,was_taken,prediction,activate_error_bit0, activate_error_bit1):
         """

@@ -98,6 +98,22 @@ class Conversions():
         else:
             binary_format=string_binary
         return binary_format
+    
+    def formatByBits(string_binary, amount_bits):
+        """
+        Format binary number to the amount of bits selecte. Asume that the last char from the binary string is the less significant (0).
+        """
+        binary_format="0"*amount_bits
+        if (len(string_binary)==amount_bits):
+            binary_format=string_binary
+        else:
+            fill_bits_amount=amount_bits-len(string_binary)
+            if (fill_bits_amount<0):
+                binary_format=string_binary[-amount_bits:]
+            else:
+                binary_format="0"*fill_bits_amount + string_binary
+
+        return binary_format
             
    
 

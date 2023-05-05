@@ -15,13 +15,13 @@ time_exec_by_addr_width=[] #z
 cont_error=[]
 
 #real variables
-addr_width_list=[4,5,6]
+addr_width_list=[4]
 
 for addr_width in addr_width_list:
 
     #real variables
     index_pht=0
-    total_addr_program=3771696 #9999 #500 #9999
+    total_addr_program= 10000 #3771696 #9999 #500 #9999
     porcentage_error=0.15
 
     prediction=False
@@ -66,20 +66,20 @@ for addr_width in addr_width_list:
                     #branch predictor schemes
 
                     #gshare-----------------------------------------------------------------
-                    binarybht=branch_history[0].replace("\n","")
-                    decimalbht=Conversions.binary_to_decimal(binarybht)
+                    # binarybht=branch_history[0].replace("\n","")
+                    # decimalbht=Conversions.binary_to_decimal(binarybht)
 
-                    xor_decimal= decimalreg ^ decimalbht
-                    xor_binary=Conversions.decimal2bin(xor_decimal)
+                    # xor_decimal= decimalreg ^ decimalbht
+                    # xor_binary=Conversions.decimal2bin(xor_decimal)
 
-                    #get index for pht 
-                    index_pht=Conversions.binary_to_decimal(xor_binary[-addr_width:])
+                    # #get index for pht 
+                    # index_pht=Conversions.binary_to_decimal(xor_binary[-addr_width:])
                     #end of gshare---------------------------------------------------------
 
 
                     #bimodal---------------------------------------------------------------
                     #get index for pht 
-                    #index_pht=Conversions.binary_to_decimal(binaryreg[-addr_width:])
+                    index_pht=Conversions.binary_to_decimal(binaryreg[-addr_width:])
                     #end of bimodal --------------------------------------------------------
                     
                    
